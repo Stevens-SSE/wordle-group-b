@@ -10,6 +10,7 @@ class wordle:
 
     def __init__(self, words=5):
         self.word = words
+        return self.word
 
     # getter method
 
@@ -22,6 +23,7 @@ class wordle:
     def set_words(self, wordle):
         print("setter method")
         self.word = wordle
+        return self.word
 
     # After using setter
     final_word.wordle(2019)
@@ -41,7 +43,14 @@ class wordle:
     def words_list_to_file(list):
         with open('valid_words.txt', 'w') as f_pointer:
             f_pointer.writelines([str(i) + '\n' for i in list])
+            try:
+                with open(filename) as f_pointer:
+                    contents = f_pointer.read()
+            except FileNotFoundError:
+                msg = "Sorry, the file " + f_pointer + "does not exist."
+                print(msg)  # Sorry, the file John.txt does not exist.
             f_pointer.close()
+
 
     def order(trials, user_input):  # function making file for storing in csv
         letter_list = OrderedDict()
