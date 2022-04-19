@@ -10,22 +10,21 @@ class wordle:
 
     def __init__(self, words=5):
         self.word = words
+        return self.word
 
     # getter method
 
-    def get_words(self):
+    def get_words(self,wordle):
         print("getter method")
-        return self.words
+        self.word = wordle
+        return self.word
 
     # setter method
 
     def set_words(self, wordle):
         print("setter method")
         self.word = wordle
-
-    # After using setter
-    final_word.wordle(2019)
-    print(final_word.wordle)
+        return self.word
 
     def valid_words(self):
         with open('words.txt', 'r+') as f_pointer:
@@ -41,6 +40,12 @@ class wordle:
     def words_list_to_file(list):
         with open('valid_words.txt', 'w') as f_pointer:
             f_pointer.writelines([str(i) + '\n' for i in list])
+            try:
+                with open(filename) as f_pointer:
+                    contents = f_pointer.read()
+            except FileNotFoundError:
+                msg = "Sorry, the file " + f_pointer + "does not exist."
+                print(msg)  # Sorry, the file John.txt does not exist.
             f_pointer.close()
 
     def order(trials, user_input):  # function making file for storing in csv
@@ -62,6 +67,13 @@ class wordle:
                 # and occurance
                 writer.writeheader()
                 writer.writerows(letter_list)  # outputs
+                try:
+                    with open(filename) as csv_files:
+                        contents = csv_files.read()
+                except FileNotFoundError:
+                    msg = "Sorry, the file " + csv_files + "does not exist."
+                    print(msg)  # Sorry, the file John.txt does not exist.
+                    csv_files.close()
 
     def get_input_from_user(trial):
         prompt_message = 'Enter a word: ' if trial > 5 else 'Reenter a word: '
@@ -141,6 +153,13 @@ def find_words(self, words):
                 line = List.read().splitlines()
                 words_list.append(Rows_count)
             print(words_list)
+            try:
+                with open(filename) as line:
+                    contents = line.read()
+            except FileNotFoundError:
+                msg = "Sorry, the file " + line + "does not exist."
+                print(msg)  # Sorry, the file John.txt does not exist.
+                line.close()
 
 def match_word_alphabets(words, word_alphabet):
     assert len(words) == len(word_alphabet)
@@ -177,6 +196,12 @@ def check_if_word_in_dictionary(word):
     with open('words.txt', 'r+') as file_pointer:
         content = file_pointer.read().split('\n')
         is_word_present = word in content
+        try:
+            with open(filename) as file_pointer:
+                contents = file_pointer.read()
+        except FileNotFoundError:
+            msg = "Sorry, the file " + file_pointer + "does not exist."
+            print(msg)  # Sorry, the file John.txt does not exist.
         file_pointer.close()
         log_to_file('info', 'word is in the file')
         return is_word_present
