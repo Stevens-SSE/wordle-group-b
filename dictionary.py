@@ -28,7 +28,7 @@ class Dictionary:
         except Exception as e:
             print(f"{e}")
     
-    def getRandomWord(self, selectedWordList) -> str | None:
+    def getRandomWord(self, selectedWordList):
         '''Choose a random word from dictionary'''
         try:
             file1 = open("gameplay.log", "a")

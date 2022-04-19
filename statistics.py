@@ -37,7 +37,8 @@ def writeInLetterFrequency() -> None:
     else:
         for key in letterDict:
             tuple = letterDict.get(key)
-            file1.write("{},{},{},{},{},{} \n".format(key, tuple[0], tuple[1], tuple[2], tuple[3], tuple[4]))
+            file1.write(f"{key},{tuple[0]},{tuple[1]},{tuple[2]},{tuple[3]},{tuple[4]}\n")
+            #file1.write("{},{},{},{},{},{} \n".format(key, tuple[0], tuple[1], tuple[2], tuple[3], tuple[4]))
         file1.close()
 
 def listToTuple() -> None:
