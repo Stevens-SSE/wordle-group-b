@@ -1,7 +1,6 @@
 import random
-
-from hw03_jaiminkumarbhupeshkumar_desai_ui import *
-from hw03_jaiminkumarbhupeshkumar_desai_dictionary import *
+from WordleUserInterface import *
+from WordleDictionary import *
 
 Max_Attempt: int = 6  # how many attempts allowed
 EXPECTED_WORD_LENGTH = 5
