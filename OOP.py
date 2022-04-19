@@ -37,11 +37,23 @@ class wordle:
                 if len(word) != 5:
                     continue
                 words.append(word)
+                try:
+                    with open(words.txt) as f_pointer:
+                        contents = f_pointer()
+                except FileNotFoundError:
+                    msg = "Sorry, the file " + f_pointer + "does not exist."
+                    print(msg)  # Sorry, the file word.txt does not exist.
             return words
 
     def words_list_to_file(list):
         with open('valid_words.txt', 'w') as f_pointer:
             f_pointer.writelines([str(i) + '\n' for i in list])
+            try:
+                with open(words.txt) as file_pointer:
+                    contents = f_pointer()
+            except FileNotFoundError:
+                msg = "Sorry, the file " + f_pointer + "does not exist."
+                print(msg)  # Sorry, the file word.txt does not exist.
             f_pointer.close()
 
     def order(trials, user_input):  # function making file for storing in csv
@@ -63,6 +75,12 @@ class wordle:
                 # and occurance
                 writer.writeheader()
                 writer.writerows(letter_list)  # outputs
+                try:
+                    with open(words.txt) as csv_files:
+                        contents = csv_files()
+                except FileNotFoundError:
+                    msg = "Sorry, the file " + csv_files + "does not exist."
+                    print(msg)  # Sorry, the file word.txt does not exist.
 
     def get_input_from_user(trial):
         prompt_message = 'Enter a word: ' if trial > 5 else 'Reenter a word: '
@@ -122,6 +140,12 @@ def get_word():
         content = file_pointer.read().split('\n')
         random_word = content[random.randint(0, len(content) - 1)]
         word = random_word if len(random_word) > 0 and len(random_word) == 5 else get_word()
+        try:
+            with open(words.txt) as file_pointer:
+                contents = file_pointer()
+        except FileNotFoundError:
+            msg = "Sorry, the file " + file_pointer + "does not exist."
+            print(msg)  # Sorry, the file word.txt does not exist.
         file_pointer.close()
         log_to_file('info', 'got files from words.txt!!!')
         return word
@@ -131,6 +155,12 @@ def check_if_word_in_dictionary(word):
     with open('words.txt', 'r+') as file_pointer:
         content = file_pointer.read().split('\n')
         is_word_present = word in content
+        try:
+            with open(words.txt) as file_pointer:
+                contents = file_pointer()
+        except FileNotFoundError:
+            msg = "Sorry, the file " + file_pointer + "does not exist."
+            print(msg)  # Sorry, the file word.txt does not exist.
         file_pointer.close()
         log_to_file('info', 'word is in the file')
         return is_word_present
